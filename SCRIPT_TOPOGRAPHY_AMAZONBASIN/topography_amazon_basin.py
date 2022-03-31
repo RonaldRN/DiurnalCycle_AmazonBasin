@@ -51,7 +51,7 @@ ds_ba = ds.sel(lat=slice(-25, 10), lon=slice(-85, -45))
 
 # Criando a figura para fazer o plot
 print("4. Criando a figura para fazer o plot")
-fig, ax = plt.subplots(figsize = (16,8), subplot_kw = {'projection': ccrs.PlateCarree()})
+fig, ax = plt.subplots(figsize = (10,8), subplot_kw = {'projection': ccrs.PlateCarree()})
 
 # Formatando os eixods do plot da Bacia Amazônica
 print("5. Formatando os eixos do plot da Bacia Amazônica")
@@ -91,6 +91,12 @@ print("7. Agregando o shapefile da Bacia Amazônica")
 fname = '/home/ronaldrn/ronald/mestrado/amazonas/Limite_Cuenca_Amazonas_geogpsperu_juansuyo.shp'
 adm1_shapes = list(shpreader.Reader(fname).geometries())
 ax.add_geometries(adm1_shapes, ccrs.PlateCarree(), edgecolor='red', facecolor='none', alpha=1, linewidth=2)
+# Adicionando ubicação da nascente da Bacia Amazônica - Nevado Mismi
+# Nevado 
+# Latitude: -15.31
+# Longitude: -71.41
+ax.scatter(-71.41, -15.31, s=200, color='black', marker='*', zorder=100, transform=ccrs.PlateCarree())
+ax.text(-71.41, -16.31, 'Nascente', size=15, ha='center', va='center', transform=ccrs.PlateCarree(), fontweight='bold')
 # Agregando legenda
 ax.set_title('Topography Configuration of Amazon Basin', y=1.04,size=22, fontweight='bold', fontfamily='sans')
 
@@ -129,7 +135,8 @@ altitude = ax.contourf(ds_ba.lon, ds_ba.lat, ds_ba.z, cmap="terrain", extend='mi
 
 # Adicionando a barra de cor
 # Configurando a magnitude da barra de cores
-cbar = plt.colorbar(altitude, ax=ax, ticks=np.arange(0, ds_ba.z.max(), 150), fraction = 0.035, pad=0.05)
+cbar = plt.colorbar(altitude, ax=ax, ticks=np.arange(0, ds_ba.z.max(), 200), fraction = 0.04, pad=0.05)
+#cbar = plt.colorbar(altitude, ax=ax, ticks=np.arange(0, ds_ba.z.max(), 200),shrink=0.5, pad=0.05)
 # Configurando os labels da barra de cores e sua legenda
 cbar.set_label('Elevation [m asl]', size = 16)
 # Tamanho da legenda dos ticks ou valores
