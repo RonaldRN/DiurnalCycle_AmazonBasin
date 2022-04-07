@@ -24,6 +24,11 @@ file_in = '/home/ronaldrn/ronald/mestrado/DADOS_PARAMETROS_HARMONICOS_AS/diurnal
 # Abrindo o arquivo NetCDF
 print("3. Ler datasets")
 ds = xr.open_dataset(file_in)
+
+# A variável "ppmean" têm unidades de mm/0.5hour, já que é a média dos 48 registos (dt = 0.5hour) no dia
+# Essa variável "ppmean" vai ser transformada com unidades de mm/hour na média de 24 horas com 24 registros
+ds['ppmean'] = ds['ppmean'] * 2
+
 print("4. Terminou de ler os datasets")
 #------------------------------------------------------------------------------------------------------
 # Criando un class para calcular os mid_points
@@ -59,7 +64,7 @@ vars = ['ppmean','C1_24h','F1_LST','C2_24h','F2_LST','F2_12h_LST']
 # Nome dos subplots
 axx = ['ax1','ax2','ax3','ax4','ax5','ax6']
 # Título dos gráficos
-title = ['a) Daily Precipitation Mean of MAM (mm/day)','b) Normalized Amplitude 1ºH MAM','c) Phase of the diurnal peak 1ºH MAM',\
+title = ['a) 24 Hourly Precipitation Mean of MAM (mm/day)','b) Normalized Amplitude 1ºH MAM','c) Phase of the diurnal peak 1ºH MAM',\
     'd) Normalize Amplitude 2ºH MAM','e) Phase of the semi-diurnal peak 2ºH MAM','f) Phase of the semi-diurnal peak 2ºH MAM']
 # Color map das paletas de cores
 colors_map = ['BrBG','PuOr','hsv','plasma','RdGy','twilight_shifted']
