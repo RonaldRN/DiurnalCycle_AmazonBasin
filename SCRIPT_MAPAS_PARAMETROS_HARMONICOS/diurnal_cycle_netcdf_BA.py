@@ -53,6 +53,10 @@ print("7. Fazendo o clip do arquivo netcdf com o shapefile da Bacia Amazônica")
 dsr = ds.salem.roi(shape = shp_ba).sel(lat=slice(-25, 10), lon=slice(-82, -48))
 print("8. Terminou de fazer o clip")
 
+# A variável "ppmean" têm unidades de mm/0.5hour, já que é a média dos 48 registos (dt = 0.5hour) no dia
+# Essa variável "ppmean" vai ser transformada com unidades de mm/hour na média de 24 horas com 24 registros
+dsr['ppmean'] = dsr['ppmean'] * 2
+
 # Salvando o arquivo com o mask da Bacia Amazônica
 print('Salvando mask da Bacia Amazônica em arquivo NetCDF')
 dsr.to_netcdf('/home/ronaldrn/ronald/mestrado/NETCDF_MASK_BA/BA_mask_MAM.nc')
@@ -121,7 +125,7 @@ vars = ['ppmean','C1_24h','F1_LST','C2_24h','F2_LST','F2_12h_LST']
 # Nome dos subplots
 axx = ['ax1','ax2','ax3','ax4','ax5','ax6']
 # Título dos gráficos
-title = ['a) Daily Precipitation Mean of MAM (mm/day)','b) Normalized Amplitude 1ºH MAM','c) Phase of the diurnal peak 1ºH MAM',\
+title = ['a) 24 Hourly Precipitation Mean of MAM (mm/day)','b) Normalized Amplitude 1ºH MAM','c) Phase of the diurnal peak 1ºH MAM',\
     'd) Normalize Amplitude 2ºH MAM','e) Phase of the semi-diurnal peak 2ºH MAM','f) Phase of the semi-diurnal peak 2ºH MAM']
 # Color map das paletas de cores
 colors_map = ['BrBG','PuOr','hsv','plasma','RdGy','twilight_shifted']
