@@ -6,7 +6,7 @@
 # 
 # File: topografy_amazon_basin.py
 # Este file .py faz o plot da elevação do terreno da Bacia Amazônica utilizando o 
-# dado de tepodragia baixado do seguinte link: 
+# dado de topografia baixado do seguinte link: 
 # https://topex.ucsd.edu/WWW_html/mar_topo.html
 # https://topex.ucsd.edu/pub/global_topo_1min/
 # Resolução espacial de aproximadamente: ~2 kilometer
