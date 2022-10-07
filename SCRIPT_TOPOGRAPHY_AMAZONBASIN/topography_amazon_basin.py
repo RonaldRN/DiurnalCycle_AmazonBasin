@@ -145,14 +145,14 @@ cbar.ax.tick_params(labelsize=12)
 ###############################################################################################
 
 # Formatando o posicionamento do plot na figura
-plt.subplots_adjust(hspace=1)
+#plt.subplots_adjust(hspace=1)
 # Menos espaços em branco
 fig.tight_layout()
 # Fazendo uma pre-visualização
 plt.show()
 # Salvando a Figura
 print("15. Salvando figuras dos parâmetros diurnos")
-fig.savefig('/home/ronaldrn/ronald/mestrado/topography/topography_AmazonBasin.png', format='png', dpi = 100)
+fig.savefig('/home/ronaldrn/ronald/mestrado/topography/topography_AmazonBasin.png', format='png', dpi = 300)
 print("Figura Salvada")
 
 print("Execução terminada do file topography_amazon_basin.py")
