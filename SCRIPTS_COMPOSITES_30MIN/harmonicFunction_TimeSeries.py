@@ -1,16 +1,19 @@
 '''
-
-Este software é utilizado para fazer a Análise harmônica segundo a metodología de 
-Wilks (2011). É definida uma função harmônica com o objetivo de calcular os dois
-primeiros harmônicos para analisar as oscilações diurnas (oscilações de 24 h, 
-mediante o 1º harmônico) e oscilações semidiurnas (oscilações de 12 h, meduante
-o 2º harmônico). A função vai retornar como resultados os parâmetros de: 
-Amplitude e fase para os dois harmônicos
-
-Autor: Ronald Guiuseppi Ramírez Nina
-Magister Student at Instituto de Astronomia, Geofísica e Ciências Atmosféricas
-Universidade de São Paulo
-
+#
+# Este código é utilizado para fazer a Análise harmônica segundo a metodología de 
+# Wilks (2011). É definida uma função harmônica com o objetivo de calcular os dois
+# primeiros harmônicos para analisar as oscilações diurnas (oscilações de 24 h, 
+# mediante o 1º harmônico) e oscilações semidiurnas (oscilações de 12 h, meduante
+# o 2º harmônico). A função vai retornar como resultados os parâmetros de: 
+# Amplitude, fase para os dois harmônicos, e a taxa de precipitação média (mm/h)
+#
+# Author: Ronald Guiuseppi Ramírez Nina
+# e-mail: ronald.ramirez.nina@usp.br / ronald.ramirez.nina@gmail.com
+# Estudante de Mestrado
+# Departamento de Ciências Atmosféricas IAG - USP
+# Instituto de Astronomia, Geofísica e Ciências Atmosféricas
+# Universidade de São Pauo
+#
 '''
 
 # Importando livrarias
@@ -36,13 +39,13 @@ def harmonico(dados, onlycoef = False, harmonic = True):
     # -F1_UTC: Fase do 1º Harmônico em horário UTC
     # -F2_UTC: Fase do 2º Harmônico em horário UTC
     # -F2_12UTC: Segunda Fase do 2º Harmônico em horário UTC
-    # -ppmean: Precipitação média das 24 horas
+    # -ppmean: Taxa de precipitação média das 24 horas
 
-    n = len(dados)    # Tamanho da amostra
+    n = len(dados)    # Tamanho da amostra (Número de observações)
     k1 = 1    # Representa o harmônico 1º
     k2 = 2    # Representa o hârmonico 2º
     t = np.arange(1,n+1,1) # Índice do tempo
-    ppmean = np.mean(dados)  # pp media diurna das 24 h
+    ppmean = np.mean(dados)  # Taxa de precipitação média das 24 h
 
     # Calculando os harmônicos 1º e 2º
     # Para o harmônico 1 

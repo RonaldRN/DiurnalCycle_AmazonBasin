@@ -6,7 +6,7 @@
 # diurno da precipitação na Bacia Amazônica".
 #
 # Autor: Ronald Guiuseppi Ramírez Nina
-# e-mial: ronald.ramirez.nina@usp.br
+# e-mail: ronald.ramirez.nina@usp.br
 # Estudante de Mestrado 
 # Departamento de Ciências Atmosféricas IAG - USP
 # Instituto de Astronomia, Geofísica e Ciências Atmosféricas
@@ -44,8 +44,8 @@ print("4. Terminou de ler o dataset")
 #
 # Definindo as coordenadas geográficas Latitude e Longitude para a extração da série temporal
 print("Extraindo a série temporal do arquivo NetCDF")
-lat = -3.06
-lon = -72.32
+lat = -17.09
+lon = -70.867
 # Extraíndo série temporal do arquivo NetCDF
 gridp = ds.sel(lat = lat, lon = lon, method = 'nearest').precipitationCal.values
 
