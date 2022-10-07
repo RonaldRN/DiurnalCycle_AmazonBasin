@@ -1,43 +1,44 @@
 """
-
-Author: Ronald Guiuseppi Ramírez Nina
-e-mail: ronald.ramirez.nina@usp.br / ronald.ramirez.nina@gmail.com
-Estudante de Mestrado
-Departamento de Ciências Atmosféricas IAG - USP
-Instituto de Astronomia, Geofísica e Ciências Atmosféricas
-Universidade de São Pauo
-
-Código em Python para calcular o número de clusters para o algoritmo K-Means, mediante 
-dois métodos que são utilizados para a avaliação do número apropriado de clusters:
-- Método do cotovelo (The elbow method)
-- Coeficiente de silueta (The silhouette coefficient)
-
-O código faz o cálculo do coeficiente de silueta (average silhouette coefficient) e
-o cálculo da suma do erro quadrático (sum of the squared error - SSE).
-
-INPUT:
-- data: numpy array multivariada
-
-OUTPUT:
-- silhouette_coefficients: Lista com os valores (scores) do coeficiente de silueta
-- sse: Lista com os valores (scores) do cálculo da suma do erro quadrático
-
+#
+# Author: Ronald Guiuseppi Ramírez Nina
+# e-mail: ronald.ramirez.nina@usp.br / ronald.ramirez.nina@gmail.com
+# Estudante de Mestrado
+# Departamento de Ciências Atmosféricas IAG - USP
+# Instituto de Astronomia, Geofísica e Ciências Atmosféricas
+# Universidade de São Pauo
+#
+# Código em Python para calcular o número de clusters para o algoritmo K-Means, mediante 
+# dois métodos que são utilizados para a avaliação do número apropriado de clusters:
+# - Método do cotovelo (The elbow method)
+# - Coeficiente de silueta (The silhouette coefficient)
+#
+# O código faz o cálculo do coeficiente de silueta (average silhouette coefficient) e
+# o cálculo da suma do erro quadrático (sum of the squared error - SSE).
+# 
+# INPUT:
+# - data: numpy array multivariada
+# 
+# OUTPUT:
+# - silhouette_coefficients: Lista com os valores (scores) do coeficiente de silueta
+# - sse: Lista com os valores (scores) do cálculo da suma do erro quadrático
+#
 *** Script baseado no Blog Real Python
 *** Link: https://realpython.com/k-means-clustering-python/
-
+#
 """
 
 # -------------------------------------------------------------------------------------------
+from random import sample
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MaxAbsScaler
 from kneed import KneeLocator
 
 # Definindo a função para avaliar o número de clusters
-def number_clusters_KMeans(data):
+def number_clusters_KMeans(data, silhouette = False, SSE = True):
 
     # INPUT
     #
@@ -77,34 +78,40 @@ def number_clusters_KMeans(data):
 
     # ---------------------------------------------------------------------------------------------------
 
-    # Calculando o coeficiente de silueta (silhouette coefficients)
+    if silhouette == True:
 
-    # Lista para armazenar os valores (scores) do coeficiente de silueta
-    silhouette_coefficients = []
+        # Calculando o coeficiente de silueta (silhouette coefficients)
 
-    for k in range(2,12):
+        # Lista para armazenar os valores médios do coeficiente de silueta de todas as amostras
+        # Este valor vai dar uma perspectiva da densidade e separação dos clusters formados
+        silhouette_avg = []
 
-        kmeans = KMeans(n_clusters = k, **kmeans_kwargs)
-        kmeans.fit(preprocessed_data)
+        for k in range(2,12):
 
-        score = silhouette_score(
-            preprocessed_data,
-            kmeans.labels_,
-        )
+            kmeans = KMeans(n_clusters = k, **kmeans_kwargs)
+            kmeans.fit(preprocessed_data)
 
-        silhouette_coefficients.append(score)
-    
+            score = silhouette_score(
+                preprocessed_data,
+                kmeans.labels_,
+            )
+
+            silhouette_avg.append(score)
+
+            return silhouette_avg
+        
     # --------------------------------------------------------------------------------------------
+    if SSE == True:
 
-    # Calculando a suma do erro quadrático (SSE)
+        # Calculando a suma do erro quadrático (SSE)
 
-    # Lista para armazenar os valores (scores) da suma do erro quadrático
-    sse = []
+        # Lista para armazenar os valores (scores) da suma do erro quadrático
+        sse = []
 
-    for k in range(1,12):
+        for k in range(1,12):
 
-        kmeans = KMeans(n_clusters = k, **kmeans_kwargs)
-        kmeans.fit(preprocessed_data)
-        sse.append(kmeans.inertia_)
+            kmeans = KMeans(n_clusters = k, **kmeans_kwargs)
+            kmeans.fit(preprocessed_data)
+            sse.append(kmeans.inertia_)
     
-    return silhouette_coefficients, sse
+        return sse
