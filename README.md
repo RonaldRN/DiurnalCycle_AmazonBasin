@@ -4,7 +4,7 @@ Códigos feitos em python para o processamento de dados do IMERG Final Run 30min
 # Objetivo
 
 O objetivo deste projeto e disponibilizar os códigos em python para o estudo do ciclo diurno da precipitação na Bacia Amazônica no cotexto da elaboração 
-do meu projeto de tese de pós-graduação (mestrado) no Instituto de Astronomia, Geofísica e Ciências Atmosféricas na Universidade de São Paulo (IAG / USP).
+do meu projeto de dissertação de pós-graduação (mestrado) no Instituto de Astronomia, Geofísica e Ciências Atmosféricas na Universidade de São Paulo (IAG / USP).
 
 # Observação
 Para o desenvolvimento do projeto foi necessário a utilização de um ambiente virtual (virtual environment) em Anaconda, para evitar os conflitos de
