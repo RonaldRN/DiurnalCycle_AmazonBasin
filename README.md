@@ -1,5 +1,5 @@
 # Diurnal-Cycle_Amazon-Basin
-Códigos feitos em python para o processamento de dados do IMERG Final Run 30min sobre a Bacia Amazônica para o estudo do ciclo diurno da precipitação.
+Códigos feitos em python para o processamento de dados do IMERG Final Run 30min sobre a Bacia Amazônica para o estudo do ciclo diurno da precipitação desde 2001-01-01 00:00:00 UTC até 2020-12-31 23:30:00 UTC.
 
 # Objetivo
 
