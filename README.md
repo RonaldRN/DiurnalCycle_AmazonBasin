@@ -27,4 +27,9 @@ outra opção é digitar o seguinte comando no terminal
 Para sair do ambiente virtual é necessário digitar:
 > conda deactivate (para sair do ambiente virtual)
 
+Para instalar o environment é necessário executar o seguinte comando no terminal de Ubuntu
+> conda env install -f tese-projeto.yml
+
+Para atualizar o environment executar o seguinte comando
+> conda env update -f tese-projeto.yml
 ...
