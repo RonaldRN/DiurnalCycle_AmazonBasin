@@ -32,4 +32,5 @@ Para instalar o environment é necessário executar o seguinte comando no termin
 
 Para atualizar o environment executar o seguinte comando
 > conda env update -f tese-projeto.yml
+
 ...
